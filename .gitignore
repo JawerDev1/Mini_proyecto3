@@ -1,0 +1,45 @@
+# Compilación de Java
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# Directorios de compilación
+/bin/
+/out/
+/build/
+/target/
+
+# Paquetes generados
+*.zip
+*.tar.gz
+*.rar
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+/out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# VSCode
+.vscode/
+
+# Sistema Operativo
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
