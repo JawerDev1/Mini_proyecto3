@@ -86,20 +86,6 @@ Condiciones de victoria o derrota.
 
 Avance automático entre turnos.
 
-📂 Estructura aportada en esta rama
-src/
- ├── view/
- │    ├── MenuPrincipal.java
- │    └── InterfazJuego.java
- │
- ├── utils/
- │    ├── AudioPlayer.java
- │    └── music/
- │         └── musica_batalla.wav
- │
- └── controller/
-      └── (flujo de batalla integrado en las vistas)
-
 ▶ Ejecutar el módulo
 
 Para probar las vistas y audio implementados:
