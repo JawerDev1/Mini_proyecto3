@@ -1,18 +1,9 @@
 package view;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import utils.AudioPlayer;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.Dimension;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class MenuPrincipal extends JFrame {
@@ -24,12 +15,10 @@ public class MenuPrincipal extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         getContentPane().setBackground(new Color(25, 25, 112)); // azul oscuro
-
         inicializarComponentes();
     }
 
     private void inicializarComponentes() {
-        // Panel principal
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         panel.setBackground(new Color(25, 25, 112));
@@ -38,7 +27,6 @@ public class MenuPrincipal extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 15, 15, 15);
 
-        // Título del juego
         JLabel titulo = new JLabel("DRAGON QUEST");
         titulo.setFont(new Font("Serif", Font.BOLD, 32));
         titulo.setForeground(Color.WHITE);
@@ -47,7 +35,6 @@ public class MenuPrincipal extends JFrame {
         gbc.gridy = 0;
         panel.add(titulo, gbc);
 
-        // Botón: Iniciar Batalla
         JButton btnIniciar = new JButton("Iniciar Batalla");
         btnIniciar.setFont(new Font("Arial", Font.BOLD, 18));
         btnIniciar.setBackground(new Color(72, 61, 139));
@@ -58,8 +45,7 @@ public class MenuPrincipal extends JFrame {
         gbc.gridy = 1;
         panel.add(btnIniciar, gbc);
 
-        // Botón: Créditos
-        JButton btnCreditos = new JButton("Créditos");
+        JButton btnCreditos = new JButton("Creditos");
         btnCreditos.setFont(new Font("Arial", Font.BOLD, 18));
         btnCreditos.setBackground(new Color(72, 61, 139));
         btnCreditos.setForeground(Color.WHITE);
@@ -69,7 +55,6 @@ public class MenuPrincipal extends JFrame {
         gbc.gridy = 2;
         panel.add(btnCreditos, gbc);
 
-        // Botón: Salir
         JButton btnSalir = new JButton("Salir");
         btnSalir.setFont(new Font("Arial", Font.BOLD, 18));
         btnSalir.setBackground(new Color(72, 61, 139));
@@ -80,43 +65,28 @@ public class MenuPrincipal extends JFrame {
         gbc.gridy = 3;
         panel.add(btnSalir, gbc);
 
-        // Acciones de los botones
         btnIniciar.addActionListener((ActionEvent e) -> {
             AudioPlayer.getInstance().playLoop("music/musica_batalla.wav", false);
-
-            new InterfazJuego().setVisible(true); // abre la ventana de batalla
-            dispose(); // cierra el menú principal
+            new InterfazJuego().setVisible(true);
+            dispose();
         });
 
-        btnCreditos.addActionListener((ActionEvent e) -> {
-            mostrarCreditos();
-        });
+        btnCreditos.addActionListener((ActionEvent e) -> mostrarCreditos());
 
         btnSalir.addActionListener((ActionEvent e) -> {
-            int opcion = JOptionPane.showConfirmDialog(this, "¿Seguro que deseas salir?", "Confirmar salida", JOptionPane.YES_NO_OPTION);
-            if (opcion == JOptionPane.YES_OPTION) {
-                System.exit(0);
-            }
+            int opcion = JOptionPane.showConfirmDialog(this, "Seguro que deseas salir?", "Confirmar salida", JOptionPane.YES_NO_OPTION);
+            if (opcion == JOptionPane.YES_OPTION) System.exit(0);
         });
     }
 
     private void mostrarCreditos() {
-        String mensaje = """
-                Créditos del Proyecto
-                --------------------------
-                Integrantes:
-                - Jhon Jawer Cuero Gómez
-                - Kevin Andres Rosero Romo
-                
-                Universidad del Valle
-                Proyecto: Dragon Quest
-                """;
-
-        JOptionPane.showMessageDialog(this, mensaje, "Créditos", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    // Método principal
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new MenuPrincipal().setVisible(true));
+        String mensaje = "Creditos del Proyecto\n" +
+                         "--------------------------\n" +
+                         "Integrantes:\n" +
+                         "- Jhon Jawer Cuero Gomez\n" +
+                         "- Kevin Andres Rosero Romo\n\n" +
+                         "Universidad del Valle\n" +
+                         "Proyecto: Dragon Quest\n";
+        JOptionPane.showMessageDialog(this, mensaje, "Creditos", JOptionPane.INFORMATION_MESSAGE);
     }
 }

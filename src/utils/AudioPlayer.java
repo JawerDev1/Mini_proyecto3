@@ -5,10 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-/**
- * Clase singleton para controlar la música del juego.
- * Permite reproducir, detener y reiniciar pistas en bucle.
- */
 public class AudioPlayer {
 
     private static AudioPlayer instance;
@@ -16,27 +12,15 @@ public class AudioPlayer {
 
     private AudioPlayer() {}
 
-    /** Obtiene la instancia única del reproductor. */
     public static synchronized AudioPlayer getInstance() {
         if (instance == null) instance = new AudioPlayer();
         return instance;
     }
 
-    /**
-     * Reproduce una pista de audio en bucle continuo.
-     * 
-     * @param ruta Ruta del archivo. Puede ser:
-     *             - "music/musica_batalla.wav" → desde la raíz del proyecto.
-     *             - "/audio/musica_batalla.wav" → desde el classpath (usar loadFromClasspath = true).
-     * @param loadFromClasspath true si el audio está dentro de /resources del proyecto.
-     */
     public synchronized void playLoop(String ruta, boolean loadFromClasspath) {
-        stop(); // Detiene cualquier clip anterior para evitar solapamientos.
-
+        stop();
         try {
             AudioInputStream audioIn;
-
-            // --- Cargar desde archivo físico ---
             if (!loadFromClasspath) {
                 File file = new File(ruta);
                 if (!file.exists()) {
@@ -44,9 +28,7 @@ public class AudioPlayer {
                     return;
                 }
                 audioIn = AudioSystem.getAudioInputStream(file);
-            }
-            // --- Cargar desde recursos dentro del classpath ---
-            else {
+            } else {
                 URL resource = getClass().getResource(ruta);
                 if (resource == null) {
                     System.err.println("Audio no encontrado en classpath: " + ruta);
@@ -55,7 +37,6 @@ public class AudioPlayer {
                 audioIn = AudioSystem.getAudioInputStream(resource);
             }
 
-            // --- Aseguramos compatibilidad de formato (PCM) ---
             AudioFormat baseFormat = audioIn.getFormat();
             AudioFormat decodedFormat = new AudioFormat(
                     AudioFormat.Encoding.PCM_SIGNED,
@@ -69,13 +50,11 @@ public class AudioPlayer {
 
             AudioInputStream din = AudioSystem.getAudioInputStream(decodedFormat, audioIn);
 
-            // --- Crear y reproducir clip ---
             clip = AudioSystem.getClip();
             clip.open(din);
-            clip.loop(Clip.LOOP_CONTINUOUSLY); // Bucle infinito
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
             clip.start();
 
-            // --- Cerramos streams (Clip ya mantiene los datos cargados) ---
             din.close();
             audioIn.close();
 
@@ -90,7 +69,6 @@ public class AudioPlayer {
         }
     }
 
-    /** Detiene la música actual y libera los recursos. */
     public synchronized void stop() {
         try {
             if (clip != null) {
@@ -104,7 +82,6 @@ public class AudioPlayer {
         }
     }
 
-    /** Reinicia la pista desde el principio (si ya está cargada). */
     public synchronized void restart() {
         if (clip == null) return;
         clip.stop();
@@ -114,7 +91,6 @@ public class AudioPlayer {
         System.out.println("Música reiniciada desde el inicio.");
     }
 
-    /** Indica si hay una pista sonando actualmente. */
     public synchronized boolean isPlaying() {
         return clip != null && clip.isRunning();
     }
