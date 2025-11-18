@@ -1,103 +1,90 @@
-🐉 DRAGON QUEST – Módulo de Interfaz, Controlador y Audio
-Rama: ramajhon
+🐉 DRAGON QUEST – Módulo MVC
 
-Este README documenta las funcionalidades desarrolladas en la rama ramajhon, correspondientes a mi aporte dentro del proyecto Dragon Quest (Java – Swing – MVC).
+Rama: rama-kevin
 
-📌 Aportes realizados en esta rama
-✔ 1. Implementación de las vistas (paquete view)
 
-Se desarrollaron las clases:
+Aportes realizados en esta rama
+ 1. Implementación completa del Modelo 
 
-MenuPrincipal.java
+En esta rama desarrollé y estructuré todo el núcleo lógico del juego, creando las clases que representan personajes, estados y tipos.
 
-Ventana inicial del juego.
+Clases implementadas:
+Personaje.java
 
-Botones:
+Clase base para todos los personajes del juego.
 
-Iniciar Batalla
+Contiene:
 
-Créditos
+Vida, ataque y defensa
 
-Salir
+Métodos de daño
 
-Estilización con Swing.
+Control de estados
 
-Vinculación con AudioPlayer para iniciar música.
+Métodos comunes para jugador/enemigo
 
-Navegación hacia InterfazJuego.
+Estado.java
 
-InterfazJuego.java
+Manejo de:
 
-Ventana principal de combate.
+HP máximo y actual
 
-Componentes implementados:
+MP 
 
-Área de texto para registro de batalla.
+Ataque
 
-Botones: Atacar y Habilidad.
+Defensa
 
-ComboBox para seleccionar enemigos.
+Estados especiales
 
-Inicialización de héroes y enemigos.
+Jugador.java
 
-Mostrado del turno actual.
+Clase del héroe controlado por el jugador.
 
-Integración con el controlador de la lógica de batalla.
+Integra atributos según el tipo de héroe.
 
-✔ 2. Módulo de Audio (carpeta utils/)
+Enemigo.java
 
-Se creó:
+Representación de enemigos del juego.
 
-AudioPlayer.java
+Atributos según dificultad o tipo.
 
-Implementado con patrón Singleton.
+Enums creados:
 
-Reproducción continua (loop) de música.
+TipoPersonaje.java
 
-Control de audio para:
+TipoHeroe.java
 
-Reproducir
+TipoEnemigo.java
 
-Detener
+Estas enumeraciones permiten categorizar personajes y controlar su comportamiento.
 
-Loop de batalla
+ 2. Controlador principal del juego (paquete controller/)
 
-Integración con MenuPrincipal e InterfazJuego.
+Creé el controlador encargado de manejar el flujo del juego bajo el patrón MVC:
 
-Además, se añadió:
+ControladorJuego.java
 
-utils/music/musica_batalla.wav
+Funciones implementadas:
 
-✔ 3. Controlador de la lógica de batalla
+Creación del héroe y enemigos.
 
-Aunque la lógica principal está dentro de InterfazJuego, se agregó/organizó:
+Gestión completa de turnos.
 
-Manejo del flujo de turnos.
+Validación de ataques.
 
-Ataques normales y habilidades.
+Ejecución de habilidades.
 
-Verificación de HP/MP antes y después de cada acción.
+Envío de información a la vista.
 
-Eliminación de enemigos derrotados.
+Verificación de estados del combate:
 
-Control de estados (dormido, normal).
+Enemigos derrotados
 
-Condiciones de victoria o derrota.
+Jugador sin HP
 
-Avance automático entre turnos.
+Victoria final
 
-▶ Ejecutar el módulo
+Coordinación total entre Modelo y Vista.
 
-Para probar las vistas y audio implementados:
-
-Abrir el proyecto en tu IDE.
-
-Ejecutar:
-
-MenuPrincipal.java
-
-👤 Autor de esta rama
-
-Jhon Jawer Cuero Gómez
-
-Rama: rama-jhon
+El controlador mantiene el juego ordenado y sin mezclar responsabilidades.
