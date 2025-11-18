@@ -1,90 +1,125 @@
-🐉 DRAGON QUEST – Módulo MVC
+# 🐉 Mini Proyecto 3 - Dragon Quest  
+### Universidad del Valle  
+**Asignatura:** Programación Orientada a Eventos  
+**Lenguaje:** Java (POO + Swing + MVC)  
 
-Rama: rama-kevin
+---
+
+## 👥 Integrantes del grupo
+| Nombre                         | Rol / Aporte principal                                   | Código       |
+|--------------------------------|----------------------------------------------------------|--------------|
+| **Kevin Andrés Rosero Romo**   | Lógica base del combate y desarrollo de clases principales | 2459554-2724 |
+| **Jhon Jawer Cuero Gómez**     | Interfaz gráfica y sistema de sonido | 2459544-2724 |
 
 
-Aportes realizados en esta rama
- 1. Implementación completa del Modelo 
+---
+## 🧩 Descripción general del proyecto
 
-En esta rama desarrollé y estructuré todo el núcleo lógico del juego, creando las clases que representan personajes, estados y tipos.
+Este proyecto implementa un sistema de combate RPG inspirado en Dragon Quest, usando el patrón MVC (Modelo–Vista–Controlador).
+El usuario controla varios héroes que enfrentan enemigos por turnos.
+La interfaz gráfica permite elegir acciones como atacar o usar habilidades, mientras el controlador gestiona la batalla y actualiza la vista.
 
-Clases implementadas:
-Personaje.java
+Incluye además un sistema de sonido que reproduce música y efectos durante el combate.
 
-Clase base para todos los personajes del juego.
+---
 
-Contiene:
+## 🧱 Arquitectura del Proyecto (Patrón MVC)
 
-Vida, ataque y defensa
+La estructura del proyecto se organizó siguiendo el patrón MVC.
+Tu aporte estuvo principalmente en View, Controller y utils.
 
-Métodos de daño
+### 🔵 Modelo (Model)
 
-Control de estados
+Contiene las clases que representan la lógica y los datos del combate.
 
-Métodos comunes para jugador/enemigo
+| Archivo |	Descripción |
+|----------|----------------|
+| **Personaje.java** |	Clase base para héroes y enemigos. |
+| **Jugador.java**	 | Representa a cada héroe. |
+| **Enemigo.java** |	Representa a los enemigos. |
+| **TipoHeroe.java, TipoEnemigo.java** |	Enumeraciones  para clasificar personajes. |
 
-Estado.java
+---
 
-Manejo de:
+### 🟣 Vista (View)
 
-HP máximo y actual
+Clases que muestran la información al usuario y reciben eventos de interacción.
 
-MP 
+Archivo	Descripción
+InterfazJuego.java	Ventana principal del juego. Muestra el combate, lista enemigos, botones de acción, logs, etc.
 
-Ataque
+Características implementadas:
+✓ Interfaz completa con Swing
+✓ Área de texto para logs
+✓ Botones de acciones (Atacar, Habilidad)
+✓ ComboBox para seleccionar enemigos
+✓ Diseño visual (colores, bordes, paneles)
+✓ Preparación para agregar imágenes de fondo
 
-Defensa
+---
 
-Estados especiales
+### 🟠 Controlador (Controller)
 
-Jugador.java
+Gestiona la lógica entre vista y modelo.
 
-Clase del héroe controlado por el jugador.
+Archivo	Descripción
+ControladorJuego.java	Recibe interacciones desde la vista, ejecuta la lógica del modelo y retorna los resultados para mostrar en pantalla.
 
-Integra atributos según el tipo de héroe.
+Funciones del controlador:
 
-Enemigo.java
+Ejecutar ataques
 
-Representación de enemigos del juego.
+Verificar enemigos vivos
 
-Atributos según dificultad o tipo.
+Controlar turnos
 
-Enums creados:
+Retornar mensajes para la vista
 
-TipoPersonaje.java
+Comunicar vista ↔ modelo
 
-TipoHeroe.java
+---
 
-TipoEnemigo.java
+### 🟡 Utilidades (utils)
 
-Estas enumeraciones permiten categorizar personajes y controlar su comportamiento.
+Clases auxiliares.
 
- 2. Controlador principal del juego (paquete controller/)
+| Archivo	 | Descripción |
+|---------------|------------|
+| **AudioPlayer.java** |	Reproduce música de fondo y efectos de sonido. |
+| **Carpeta music/**	| Donde guardaste los archivos .wav utilizados en el juego. |
 
-Creé el controlador encargado de manejar el flujo del juego bajo el patrón MVC:
+---
 
-ControladorJuego.java
+### 🎮 Funcionalidades principales
 
-Funciones implementadas:
+✔ Sistema de combate por turnos
 
-Creación del héroe y enemigos.
+✔ Gestión de héroes y enemigos
 
-Gestión completa de turnos.
+✔ Interfaz gráfica responsiva
 
-Validación de ataques.
+✔ Reproducción de música durante la batalla
 
-Ejecución de habilidades.
+✔ Botones de acción (Atacar / Habilidad)
 
-Envío de información a la vista.
+✔ Log detallado del combate
 
-Verificación de estados del combate:
+✔ Selección dinámica de enemigos vivos
 
-Enemigos derrotados
+✔ Fin de batalla con música detenida
 
-Jugador sin HP
+---
 
-Victoria final
+### 🧰 Tecnologías utilizadas
 
-Coordinación total entre Modelo y Vista.
+Java 17+
 
-El controlador mantiene el juego ordenado y sin mezclar responsabilidades.
+Swing (GUI)
+
+POO (Herencia, Polimorfismo, Encapsulamiento)
+
+MVC (Modelo–Vista–Controlador)
+
+javax.sound.sampled (Audio)
+
+Git / GitHub (trabajo colaborativo por rama
